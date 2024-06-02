@@ -9,7 +9,7 @@ class Employee(Base):
     __tablename__ = "employees"
 
     fullname: Mapped[str] = mapped_column(String(50), unique=True)
-    age: Mapped[int] = mapped_column()
+    age: Mapped[int] = mapped_column(String(10))
     email: Mapped[str | None] = mapped_column(String(50), unique=True)
     hashed_password: Mapped[str] = mapped_column(String(1024), unique=True)
     refresh_token: Mapped[str | None] = mapped_column()
