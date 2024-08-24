@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 
 class EmployeeRelationMixin:
-    _employee_id_nullable: bool = False
+    _employee_id_nullable: bool = True
     _employee_id_unique: bool = False
     _employee_back_populates: str | None = None
 
