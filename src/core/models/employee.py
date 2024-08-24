@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING, List, Optional
 
 from sqlalchemy import String, Boolean
 from sqlalchemy.orm import Mapped, relationship
@@ -13,10 +13,11 @@ if TYPE_CHECKING:
 class Employee(Base):
 
     fullname: Mapped[str] = mapped_column(String(50), unique=True)
-    age: Mapped[int]
-    email: Mapped[str | None] = mapped_column(String(50), unique=True)
-    hashed_password: Mapped[str] = mapped_column(String(1024), unique=True)
-    refresh_token: Mapped[str | None]
+    position: Mapped[str] = mapped_column(String(50))
+    age: Mapped[int] = mapped_column()
+    email: Mapped[Optional[str]] = mapped_column(String(50), unique=True)
+    hashed_password: Mapped[str] = mapped_column(String(1024))
+    refresh_token: Mapped[Optional[str]] = mapped_column(String(256))
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
 
     tasks: Mapped[List["Task"]] = relationship(back_populates="employee")
