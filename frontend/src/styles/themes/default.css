@@ -1,0 +1,15 @@
+/* --- 🌟 DEFAULT THEME 🌟 --- */
+.App[data-theme='default']::before {
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(236, 72, 153, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 30%, rgba(118, 75, 162, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(102, 126, 234, 0.3) 0%, transparent 40%);
+  animation: auro-borealis 30s ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+@keyframes auro-borealis {
+  0% { transform: rotate(0deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}

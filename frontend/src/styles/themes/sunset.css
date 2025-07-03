@@ -1,0 +1,185 @@
+/* --- 🌅 ENHANCED SUNSET THEME 🌅 --- */
+[data-theme='sunset'] {
+  --primary-gradient: linear-gradient(180deg,
+    #0f0624 0%,     /* Глубокая ночь */
+    #2d1b3d 15%,    /* Предрассветные сумерки */
+    #5c2a04 35%,    /* Темно-оранжевый горизонт */
+    #b8860b 55%,    /* Золотой час */
+    #ff6b35 75%,    /* Яркий оранжевый */
+    #ffb347 90%,    /* Светло-персиковый */
+    #ffe4b5 100%    /* Мягкий кремовый */
+  );
+  --glass-bg: rgba(255, 107, 53, 0.12);
+  --glass-border: rgba(255, 179, 71, 0.25);
+  --glass-shadow: 0 12px 40px rgba(184, 134, 11, 0.3);
+  --accent-color: #ff6b35;
+  --text-primary: #ffe4b5;
+  --text-secondary: rgba(255, 228, 181, 0.85);
+}
+
+.App[data-theme='sunset'] {
+  background: var(--primary-gradient);
+  background-size: 100% 300%;
+  animation: sunset-sky-shift 40s ease-in-out infinite alternate;
+  position: relative;
+}
+
+@keyframes sunset-sky-shift {
+  0% {
+    background-position: 50% 0%;
+    filter: brightness(0.9) saturate(1.1);
+  }
+  25% {
+    background-position: 50% 25%;
+    filter: brightness(1.0) saturate(1.2);
+  }
+  75% {
+    background-position: 50% 75%;
+    filter: brightness(1.1) saturate(1.3);
+  }
+  100% {
+    background-position: 50% 100%;
+    filter: brightness(1.0) saturate(1.15);
+  }
+}
+
+/* Солнечный диск */
+.App[data-theme='sunset']::before {
+  bottom: -15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: 60vw;
+  max-width: 400px;
+  max-height: 400px;
+  background: radial-gradient(ellipse at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 245, 157, 0.8) 20%,
+    rgba(255, 179, 71, 0.6) 45%,
+    rgba(255, 107, 53, 0.4) 65%,
+    rgba(184, 134, 11, 0.2) 80%,
+    transparent 90%
+  );
+  border-radius: 50%;
+  filter: blur(2px);
+  animation: sunset-sun-glow 25s ease-in-out infinite alternate;
+  z-index: 1;
+  opacity: 1;
+}
+
+@keyframes sunset-sun-glow {
+  0% {
+    transform: translateX(-50%) translateY(5px) scale(0.95);
+    box-shadow:
+      0 0 60px 20px rgba(255, 245, 157, 0.3),
+      0 0 120px 40px rgba(255, 179, 71, 0.25),
+      0 0 200px 80px rgba(255, 107, 53, 0.15);
+    filter: blur(2px) brightness(1.0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-2px) scale(1.0);
+    box-shadow:
+      0 0 80px 35px rgba(255, 245, 157, 0.4),
+      0 0 160px 65px rgba(255, 179, 71, 0.35),
+      0 0 250px 120px rgba(255, 107, 53, 0.25);
+    filter: blur(1px) brightness(1.1);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-8px) scale(1.05);
+    box-shadow:
+      0 0 100px 50px rgba(255, 245, 157, 0.5),
+      0 0 200px 90px rgba(255, 179, 71, 0.4),
+      0 0 300px 150px rgba(255, 107, 53, 0.3);
+    filter: blur(3px) brightness(1.15);
+  }
+}
+
+/* Атмосферные облака и лучи */
+.App[data-theme='sunset']::after {
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    /* Солнечные лучи */
+    linear-gradient(45deg, transparent 0%, transparent 48%, rgba(255, 245, 157, 0.1) 49%, rgba(255, 245, 157, 0.15) 50%, rgba(255, 245, 157, 0.1) 51%, transparent 52%, transparent 100%),
+    linear-gradient(135deg, transparent 0%, transparent 48%, rgba(255, 179, 71, 0.08) 49%, rgba(255, 179, 71, 0.12) 50%, rgba(255, 179, 71, 0.08) 51%, transparent 52%, transparent 100%),
+    linear-gradient(-45deg, transparent 0%, transparent 48%, rgba(255, 107, 53, 0.06) 49%, rgba(255, 107, 53, 0.1) 50%, rgba(255, 107, 53, 0.06) 51%, transparent 52%, transparent 100%),
+    /* Облачные слои */
+    radial-gradient(ellipse 200% 50% at 20% 80%, rgba(255, 228, 181, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 150% 40% at 80% 85%, rgba(255, 179, 71, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 180% 30% at 50% 90%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+  background-size:
+    800px 800px,
+    700px 700px,
+    600px 600px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  animation:
+    sunset-rays-rotation 35s linear infinite,
+    sunset-clouds-drift 50s ease-in-out infinite alternate;
+  z-index: 2;
+  opacity: 1;
+}
+
+@keyframes sunset-rays-rotation {
+  0% {
+    background-position: 0 0, 100px 50px, -50px 100px, 0 0, 0 0, 0 0;
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    background-position: 800px 800px, 900px 850px, 750px 900px, 0 0, 0 0, 0 0;
+    transform: rotate(360deg) scale(1.02);
+  }
+}
+
+@keyframes sunset-clouds-drift {
+  0% {
+    filter: blur(0.5px) opacity(0.7);
+    transform: translateX(-2%) translateY(0%);
+  }
+  50% {
+    filter: blur(1px) opacity(0.9);
+    transform: translateX(1%) translateY(-1%);
+  }
+  100% {
+    filter: blur(0.8px) opacity(0.8);
+    transform: translateX(-1%) translateY(0.5%);
+  }
+}
+
+/* Улучшенные эффекты для Sunset темы */
+[data-theme='sunset'] .card:hover,
+[data-theme='sunset'] .task-card:hover {
+  box-shadow:
+    0 15px 45px rgba(184, 134, 11, 0.3),
+    0 0 35px rgba(255, 179, 71, 0.25),
+    0 0 70px rgba(255, 107, 53, 0.15),
+    inset 0 1px 0 rgba(255, 228, 181, 0.2);
+  transform: translateY(-3px) scale(1.01);
+  background: rgba(255, 107, 53, 0.15);
+  border-color: rgba(255, 179, 71, 0.35);
+}
+
+[data-theme='sunset'] button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,
+    rgba(255, 228, 181, 0.4) 0%,
+    rgba(255, 179, 71, 0.3) 30%,
+    rgba(255, 107, 53, 0.2) 60%,
+    transparent 80%
+  );
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  border-radius: 50%;
+}
+
+[data-theme='sunset'] button:hover::after {
+  width: 400px;
+  height: 400px;
+  animation: sunset-sun-glow 1.5s ease-out infinite;
+}

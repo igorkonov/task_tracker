@@ -1,0 +1,476 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Размеры кнопок */
+.btn-small {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.75rem;
+  gap: 4px;
+}
+
+.btn-medium {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 0.875rem;
+}
+
+.btn-large {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 1rem;
+  gap: var(--spacing-md);
+}
+
+/* Варианты кнопок */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-pink) 100%);
+  color: white;
+  box-shadow: 0 6px 20px rgba(189, 147, 249, 0.25);
+  border: none;
+}
+
+.btn-primary:hover:not(.btn-disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(189, 147, 249, 0.35);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: skewX(-25deg);
+}
+
+.btn:hover:not(.btn-disabled)::before {
+  left: 150%;
+}
+
+.btn-primary:active:not(.btn-disabled) {
+  transform: translateY(0);
+}
+
+.btn-secondary,
+.btn-ghost {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover:not(.btn-disabled),
+.btn-ghost:hover:not(.btn-disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
+}
+
+.btn-outline:hover:not(.btn-disabled) {
+  background: var(--glass-bg);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.btn-ghost {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ghost:hover:not(.btn-disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-destructive {
+  background: linear-gradient(135deg, #ff5555 0%, #dd2222 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(255, 85, 85, 0.25);
+}
+
+.btn-destructive:hover:not(.btn-disabled) {
+  background: linear-gradient(135deg, #ff6565 0%, #e03232 100%);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(255, 85, 85, 0.35);
+}
+
+.btn-success {
+  background: var(--success-color);
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-success:hover:not(.btn-disabled) {
+  background: #059669;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-light);
+}
+
+.btn-warning {
+  background: var(--warning-color);
+  color: white;
+  border: 1px solid transparent;
+}
+
+.btn-warning:hover:not(.btn-disabled) {
+  background: #d97706;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-light);
+}
+
+/* Состояния кнопок */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.btn-loading .btn-content {
+  opacity: 0.7;
+}
+
+/* Полная ширина */
+.btn-full-width {
+  width: 100%;
+}
+
+/* Иконки */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-small .btn-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.btn-large .btn-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Спиннер загрузки */
+.btn-spinner {
+  position: absolute;
+  left: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.btn-small .spinner {
+  width: 12px;
+  height: 12px;
+  border-width: 1.5px;
+}
+
+.btn-large .spinner {
+  width: 18px;
+  height: 18px;
+  border-width: 2.5px;
+}
+
+/* Эффект ряби */
+/* Removing the generic ripple effect to prevent conflicts with shimmer effect */
+/*
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active:not(.btn-disabled)::before {
+  width: 300px;
+  height: 300px;
+}
+*/
+
+/* Группа кнопок */
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-group .btn:first-child {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.btn-group .btn:last-child {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  border-right: none;
+}
+
+.btn-group .btn:only-child {
+  border-radius: var(--border-radius);
+  border-right: none;
+}
+
+/* Кнопка-иконка */
+.btn-icon-only {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-icon-only.btn-small {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-icon-only.btn-large {
+  width: 48px;
+  height: 48px;
+}
+
+/* Плавающая кнопка действия */
+.btn-fab {
+  position: fixed;
+  bottom: var(--spacing-xl);
+  right: var(--spacing-xl);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-heavy);
+  z-index: var(--z-fixed);
+  padding: 0;
+}
+
+.btn-fab:hover:not(.btn-disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .btn-small {
+    padding: 6px var(--spacing-sm);
+    font-size: 0.75rem;
+  }
+
+  .btn-large {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .btn-fab {
+    bottom: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group .btn {
+    border-radius: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-group .btn:first-child {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+
+  .btn-group .btn:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-bottom: none;
+  }
+}
+
+/* Темы */
+.theme-dark .btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.theme-ocean .btn-primary {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+.theme-sunset .btn-primary {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+}
+
+.theme-forest .btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.theme-purple .btn-primary {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.theme-pink .btn-primary {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+}
+
+.task-card.slide-in {
+  animation: slideIn 0.5s ease-out both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.button.aurora,
+.btn.aurora {
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: aurora-flow 5s ease-in-out infinite;
+  transition: all 0.4s ease;
+}
+
+.btn.aurora.btn-primary {
+  background-image: linear-gradient(110deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+}
+
+.btn.aurora.btn-ghost {
+  background-image: linear-gradient(110deg, #333 0%, #555 50%, #333 100%);
+  border-color: #666;
+}
+
+.btn.aurora:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+}
+
+@keyframes aurora-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn.shimmer-effect,
+.task-form-close.shimmer-effect,
+.add-task-btn.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.shimmer-effect::before,
+.task-form-close.shimmer-effect::before,
+.add-task-btn.shimmer-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 80%
+  );
+  transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: skewX(-25deg);
+}
+
+.btn.shimmer-effect:hover::before,
+.task-form-close.shimmer-effect:hover::before,
+.add-task-btn.shimmer-effect:hover::before {
+  left: 150%;
+}

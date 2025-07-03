@@ -1,0 +1,545 @@
+/* ==========================================================================
+    Волшебная таежная тема - Мистический лес с северным сиянием и светлячками
+    ========================================================================== */
+
+/* --- 🌲 ENCHANTED FOREST THEME 🌲 --- */
+.App[data-theme='forest']{
+  --forest-deep: #0d1b0d;
+  --forest-mid: #1a2f1a;
+  --forest-light: #2d4a2d;
+  --aurora-green: #39ff14;
+  --aurora-blue: #00ffff;
+  --aurora-purple: #9966ff;
+  --aurora-pink: #ff6ec7;
+  --moss-green: #4a7c59;
+  --firefly-gold: #ffff99;
+  --firefly-green: #adff2f;
+  --mist-white: #f0f8ff;
+  --pine-green: #578a62;
+  --fog-gray: #b0c4de;
+  --moonlight: #fff8dc;
+  --earth-brown: #8b4513;
+
+  --primary-gradient: radial-gradient(ellipse at center, var(--forest-light) 0%, var(--forest-mid) 60%, var(--forest-deep) 100%);
+  --glass-bg: rgba(45, 74, 45, 0.15);
+  --glass-border: rgba(57, 255, 20, 0.25);
+  --glass-shadow: 0 15px 60px rgba(13, 27, 13, 0.8);
+  --text-primary: #f0f8ff;
+  --text-secondary: rgba(240, 248, 255, 0.9);
+  --accent-color: var(--aurora-green);
+  --accent-rgb: 57, 255, 20;
+
+  /* Предотвращаем переполнение */
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Базовый фон леса */
+.App[data-theme='forest'] {
+  background:
+    radial-gradient(ellipse at 30% 100%, var(--forest-mid) 0%, transparent 70%),
+    radial-gradient(ellipse at 70% 100%, var(--forest-light) 0%, transparent 60%),
+    linear-gradient(180deg, var(--forest-deep) 0%, var(--forest-mid) 40%, var(--forest-light) 100%);
+}
+
+/* Мистическое северное сияние с лунным светом */
+.App[data-theme='forest']::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+
+  background:
+    /* === ЯРКОЕ СОЛНЦЕ === */
+    radial-gradient(circle 80px at 75% 20%,
+      rgba(255,255,255,1) 0%,
+      rgba(255,248,220,0.95) 20%,
+      rgba(255,235,180,0.8) 40%,
+      rgba(255,220,140,0.6) 60%,
+      rgba(255,200,100,0.4) 80%,
+      transparent 100%),
+    /* === СОЛНЕЧНОЕ ГАЛО === */
+    radial-gradient(circle 150px at 75% 20%,
+      transparent 0%,
+      transparent 40%,
+      rgba(255,248,220,0.3) 50%,
+      rgba(255,235,180,0.25) 60%,
+      rgba(255,220,140,0.2) 70%,
+      rgba(255,200,100,0.15) 80%,
+      rgba(255,180,60,0.1) 90%,
+      transparent 100%),
+    /* === УТРЕННИЙ ТУМАН СНИЗУ === */
+    radial-gradient(ellipse 120% 80px at 50% 100%,
+      rgba(248,253,248,0.4) 0%,
+      rgba(238,248,238,0.3) 35%,
+      rgba(228,243,228,0.2) 65%,
+      rgba(218,238,218,0.1) 85%,
+      transparent 100%),
+    radial-gradient(ellipse 100% 60px at 30% 100%,
+      rgba(240,248,255,0.3) 0%,
+      rgba(230,245,255,0.2) 50%,
+      transparent 100%),
+    radial-gradient(ellipse 100% 60px at 70% 100%,
+      rgba(240,248,255,0.25) 0%,
+      rgba(230,245,255,0.15) 50%,
+      transparent 100%),
+    /* Северное сияние - основные волны */
+    linear-gradient(75deg,
+      transparent 0%,
+      rgba(57,255,20,0.2) 15%,
+      rgba(0,255,255,0.15) 25%,
+      rgba(153,102,255,0.12) 35%,
+      rgba(255,110,199,0.1) 45%,
+      transparent 55%,
+      rgba(57,255,20,0.15) 65%,
+      rgba(0,255,255,0.12) 75%,
+      transparent 85%),
+    /* Дополнительные волны северного сияния */
+    linear-gradient(82deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(153,102,255,0.15) 30%,
+      rgba(57,255,20,0.12) 40%,
+      rgba(255,110,199,0.1) 50%,
+      rgba(0,255,255,0.08) 60%,
+      transparent 70%),
+    /* Третий слой сияния для объема */
+    linear-gradient(68deg,
+      rgba(57,255,20,0.1) 10%,
+      transparent 20%,
+      rgba(0,255,255,0.08) 35%,
+      rgba(153,102,255,0.06) 45%,
+      transparent 55%,
+      rgba(255,110,199,0.05) 70%,
+      transparent 80%),
+    /* Лунные лучи сквозь деревья */
+    linear-gradient(15deg,
+      transparent 0%,
+      rgba(240,248,255,0.06) 30%,
+      rgba(230,245,255,0.08) 35%,
+      rgba(240,248,255,0.05) 40%,
+      transparent 45%),
+    linear-gradient(25deg,
+      transparent 50%,
+      rgba(240,248,255,0.04) 65%,
+      rgba(230,245,255,0.06) 70%,
+      rgba(240,248,255,0.04) 75%,
+      transparent 80%);
+
+  opacity: 0.9;
+  animation: sunlight-dance 25s ease-in-out infinite alternate, mist-flow 35s linear infinite;
+
+  /* Улучшенная маска для предотвращения переполнения */
+  -webkit-mask:
+    linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 80%,
+      rgba(0,0,0,0.9) 90%,
+      rgba(0,0,0,0.6) 95%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.8) 2%,
+      rgba(0,0,0,1) 5%,
+      rgba(0,0,0,1) 95%,
+      rgba(0,0,0,0.8) 98%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to left,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.8) 2%,
+      rgba(0,0,0,1) 5%,
+      rgba(0,0,0,1) 95%,
+      rgba(0,0,0,0.8) 98%,
+      rgba(0,0,0,0) 100%);
+  -webkit-mask-composite: source-in;
+
+  mask:
+    linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 80%,
+      rgba(0,0,0,0.9) 90%,
+      rgba(0,0,0,0.6) 95%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.8) 2%,
+      rgba(0,0,0,1) 5%,
+      rgba(0,0,0,1) 95%,
+      rgba(0,0,0,0.8) 98%,
+      rgba(0,0,0,0) 100%);
+  mask-composite: intersect;
+}
+
+@keyframes sunlight-dance {
+  0% {
+    opacity: 0.85;
+    filter: brightness(1.05) contrast(1.02);
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    opacity: 0.9;
+    filter: brightness(1.1) contrast(1.05);
+    transform: translateY(-2px) scale(1.005);
+  }
+  50% {
+    opacity: 0.95;
+    filter: brightness(1.15) contrast(1.08);
+    transform: translateY(-3px) scale(1.01);
+  }
+  75% {
+    opacity: 0.92;
+    filter: brightness(1.12) contrast(1.06);
+    transform: translateY(-1px) scale(1.008);
+  }
+  100% {
+    opacity: 0.88;
+    filter: brightness(1.08) contrast(1.04);
+    transform: translateY(-2px) scale(1.003);
+  }
+}
+
+@keyframes mist-flow {
+  0% {
+    transform: translateX(0px) scale(1) translateY(0px);
+  }
+  25% {
+    transform: translateX(8px) scale(1.02) translateY(-1px);
+  }
+  50% {
+    transform: translateX(-5px) scale(0.99) translateY(0.5px);
+  }
+  75% {
+    transform: translateX(12px) scale(1.01) translateY(-0.5px);
+  }
+  100% {
+    transform: translateX(0px) scale(1) translateY(0px);
+  }
+}
+
+/* Светлячки, звезды и лесная магия */
+.App[data-theme='forest']::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+
+  background:
+    /* === МЕРЦАЮЩИЕ ЗВЕЗДЫ СКВОЗЬ КРОНЫ === */
+    radial-gradient(circle 0.8px at 15% 12%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 25% 8%, rgba(240,248,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 35% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 45% 6%, rgba(230,245,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 55% 18%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 65% 10%, rgba(240,248,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 75% 14%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 85% 7%, rgba(230,245,255,0.8) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 95% 16%, rgba(255,255,255,0.9) 0%, transparent 100%),
+
+    /* === ВОЛШЕБНЫЕ СВЕТЛЯЧКИ === */
+    radial-gradient(circle 2px at 20% 65%, rgba(255,255,153,0.8) 0%, rgba(255,255,153,0.4) 40%, transparent 100%),
+    radial-gradient(circle 1.8px at 25% 70%, rgba(255,255,99,0.7) 0%, rgba(255,255,99,0.3) 40%, transparent 100%),
+    radial-gradient(circle 2.2px at 30% 68%, rgba(255,255,153,0.8) 0%, rgba(255,255,153,0.4) 40%, transparent 100%),
+    radial-gradient(circle 1.9px at 35% 72%, rgba(255,255,99,0.7) 0%, rgba(255,255,99,0.3) 40%, transparent 100%),
+    radial-gradient(circle 2.1px at 40% 67%, rgba(255,255,153,0.8) 0%, rgba(255,255,153,0.4) 40%, transparent 100%),
+
+    /* Зеленоватые светлячки */
+    radial-gradient(circle 1.7px at 60% 75%, rgba(173,255,47,0.7) 0%, rgba(173,255,47,0.3) 40%, transparent 100%),
+    radial-gradient(circle 2px at 65% 78%, rgba(144,238,144,0.8) 0%, rgba(144,238,144,0.4) 40%, transparent 100%),
+    radial-gradient(circle 1.8px at 70% 73%, rgba(173,255,47,0.7) 0%, rgba(173,255,47,0.3) 40%, transparent 100%),
+    radial-gradient(circle 2.2px at 75% 76%, rgba(144,238,144,0.8) 0%, rgba(144,238,144,0.4) 40%, transparent 100%),
+    radial-gradient(circle 1.9px at 80% 74%, rgba(173,255,47,0.7) 0%, rgba(173,255,47,0.3) 40%, transparent 100%),
+
+    /* Разбросанные светлячки */
+    radial-gradient(circle 1.6px at 15% 85%, rgba(255,255,153,0.6) 0%, rgba(255,255,153,0.3) 40%, transparent 100%),
+    radial-gradient(circle 1.8px at 45% 88%, rgba(173,255,47,0.7) 0%, rgba(173,255,47,0.3) 40%, transparent 100%),
+    radial-gradient(circle 2px at 85% 82%, rgba(255,255,99,0.8) 0%, rgba(255,255,99,0.4) 40%, transparent 100%),
+    radial-gradient(circle 1.7px at 55% 90%, rgba(144,238,144,0.7) 0%, rgba(144,238,144,0.3) 40%, transparent 100%),
+    radial-gradient(circle 1.9px at 25% 92%, rgba(255,255,153,0.7) 0%, rgba(255,255,153,0.3) 40%, transparent 100%),
+
+    /* === МАГИЧЕСКИЕ СПОРЫ И ПЫЛЬЦА === */
+    radial-gradient(circle 0.8px at 12% 45%, rgba(173,255,47,0.3) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 22% 52%, rgba(255,255,153,0.2) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 32% 48%, rgba(144,238,144,0.3) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 42% 55%, rgba(173,255,47,0.2) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 52% 47%, rgba(255,255,153,0.3) 0%, transparent 100%),
+    radial-gradient(circle 0.6px at 62% 53%, rgba(144,238,144,0.2) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 72% 49%, rgba(173,255,47,0.3) 0%, transparent 100%),
+    radial-gradient(circle 0.7px at 82% 56%, rgba(255,255,153,0.2) 0%, transparent 100%),
+    radial-gradient(circle 0.5px at 92% 46%, rgba(144,238,144,0.3) 0%, transparent 100%),
+
+    /* === ЛУННЫЕ БЛИКИ НА ЛИСТВЕ === */
+    radial-gradient(circle 1px at 18% 38%, rgba(240,248,255,0.5) 0%, transparent 100%),
+    radial-gradient(circle 0.8px at 35% 42%, rgba(230,245,255,0.4) 0%, transparent 100%),
+    radial-gradient(circle 1.2px at 52% 36%, rgba(240,248,255,0.5) 0%, transparent 100%),
+    radial-gradient(circle 0.9px at 68% 44%, rgba(230,245,255,0.4) 0%, transparent 100%),
+    radial-gradient(circle 1.1px at 85% 39%, rgba(240,248,255,0.5) 0%, transparent 100%),
+
+    /* === МИСТИЧЕСКИЕ ОГНИ БОЛОТ === */
+    radial-gradient(circle 3px at 5% 95%, rgba(57,255,20,0.5) 0%, rgba(57,255,20,0.2) 50%, transparent 100%),
+    radial-gradient(circle 2.5px at 95% 88%, rgba(0,255,255,0.4) 0%, rgba(0,255,255,0.15) 50%, transparent 100%),
+    radial-gradient(circle 2.8px at 8% 92%, rgba(153,102,255,0.45) 0%, rgba(153,102,255,0.18) 50%, transparent 100%),
+    radial-gradient(circle 3.2px at 92% 94%, rgba(255,110,199,0.5) 0%, rgba(255,110,199,0.2) 50%, transparent 100%),
+
+    /* === ПАРЯЩИЕ ЛИСТЬЯ === */
+    radial-gradient(ellipse 4px 8px at 88% 35%, rgba(87, 138, 98, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse 3px 6px at 12% 45%, rgba(74, 124, 89, 0.25) 0%, transparent 70%),
+    radial-gradient(ellipse 5px 9px at 65% 25%, rgba(87, 138, 98, 0.28) 0%, transparent 70%),
+    radial-gradient(ellipse 3.5px 7px at 35% 55%, rgba(74, 124, 89, 0.2) 0%, transparent 70%);
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+
+  animation: fireflies-dance 15s ease-in-out infinite alternate, forest-sparkle 8s ease-in-out infinite;
+
+  /* Улучшенная маска для светлячков */
+  -webkit-mask:
+    linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 85%,
+      rgba(0,0,0,0.8) 92%,
+      rgba(0,0,0,0.4) 97%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to right,
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0.9) 3%,
+      rgba(0,0,0,1) 6%,
+      rgba(0,0,0,1) 94%,
+      rgba(0,0,0,0.9) 97%,
+      rgba(0,0,0,0.5) 100%);
+  -webkit-mask-composite: source-in;
+
+  mask:
+    linear-gradient(to bottom,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,1) 85%,
+      rgba(0,0,0,0.8) 92%,
+      rgba(0,0,0,0.4) 97%,
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to right,
+      rgba(0,0,0,0.5) 0%,
+      rgba(0,0,0,0.9) 3%,
+      rgba(0,0,0,1) 6%,
+      rgba(0,0,0,1) 94%,
+      rgba(0,0,0,0.9) 97%,
+      rgba(0,0,0,0.5) 100%);
+  mask-composite: intersect;
+}
+
+@keyframes fireflies-dance {
+  0% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    filter: brightness(0.9) blur(0px);
+  }
+  25% {
+    transform: translateY(-6px) translateX(3px) scale(1.03);
+    filter: brightness(1.1) blur(0.2px);
+  }
+  50% {
+    transform: translateY(-3px) translateX(-2px) scale(1.01);
+    filter: brightness(1.3) blur(0.1px);
+  }
+  75% {
+    transform: translateY(-8px) translateX(2px) scale(1.05);
+    filter: brightness(1.05) blur(0.3px);
+  }
+  100% {
+    transform: translateY(-4px) translateX(-1px) scale(1.02);
+    filter: brightness(0.95) blur(0.05px);
+  }
+}
+
+@keyframes forest-sparkle {
+  0% {
+    opacity: 0.8;
+  }
+  33% {
+    opacity: 0.95;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}
+
+/* Граница с эффектом роста деревьев */
+/* Граница с эффектом роста деревьев */
+.App[data-theme='forest'] {
+  border: 2px solid transparent;
+  border-image: linear-gradient(45deg,
+    rgba(87, 138, 98, 0.6) 0%,
+    rgba(57, 255, 20, 0.4) 25%,
+    rgba(173, 255, 47, 0.3) 50%,
+    rgba(144, 238, 144, 0.4) 75%,
+    rgba(87, 138, 98, 0.6) 100%) 1;
+}
+
+/* Стеклянные элементы интерфейса */
+.App[data-theme='forest'] .glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Лесные эффекты для карточек */
+/* Лесные эффекты для карточек */
+.App[data-theme='forest'] .card,
+.App[data-theme='forest'] .task-card {
+  position: relative;
+  background: rgba(45, 74, 45, 0.18);
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* Улучшенные эффекты для карточек */
+.App[data-theme='forest'] .card:hover,
+.App[data-theme='forest'] .task-card:hover {
+  box-shadow:
+    0 20px 60px rgba(13, 27, 13, 0.7),
+    0 0 40px rgba(57, 255, 20, 0.25),
+    0 0 80px rgba(173, 255, 47, 0.15),
+    inset 0 1px 0 rgba(240, 248, 255, 0.08);
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(45, 74, 45, 0.22);
+  border-color: rgba(57, 255, 20, 0.3);
+}
+
+/* Универсальные лесные кнопки */
+[data-theme='forest'] button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  background: rgba(45, 74, 45, 0.15);
+  border: 1px solid rgba(57, 255, 20, 0.2);
+  color: var(--text-primary);
+}
+
+/* Анимированный эффект природной магии для кнопок */
+[data-theme='forest'] button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle,
+    rgba(240, 248, 255, 0.3) 0%,
+    rgba(57, 255, 20, 0.25) 30%,
+    rgba(173, 255, 47, 0.15) 60%,
+    transparent 80%
+  );
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  border-radius: 50%;
+}
+
+[data-theme='forest'] button:hover::after {
+  width: 300px;
+  height: 300px;
+  animation: forest-magic-pulse 2s ease-out infinite;
+}
+
+@keyframes forest-magic-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+    filter: blur(1px);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+/* Улучшенные эффекты при наведении на кнопки */
+[data-theme='forest'] button:hover {
+  box-shadow:
+    0 0 25px rgba(57, 255, 20, 0.4),
+    0 0 50px rgba(173, 255, 47, 0.3),
+    0 0 75px rgba(144, 238, 144, 0.08);
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(45, 74, 45, 0.25);
+  border-color: rgba(57, 255, 20, 0.4);
+  color: var(--text-primary);
+}
+
+/* Дополнительные эффекты для текста */
+[data-theme='forest'] h1,
+[data-theme='forest'] h2,
+[data-theme='forest'] h3 {
+  text-shadow:
+    0 0 10px rgba(57, 255, 20, 0.3),
+    0 0 20px rgba(173, 255, 47, 0.2),
+    2px 2px 4px rgba(13, 27, 13, 0.8);
+  color: var(--text-primary);
+}
+
+/* Скроллбар в лесном стиле */
+[data-theme='forest'] ::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme='forest'] ::-webkit-scrollbar-track {
+  background: rgba(45, 74, 45, 0.3);
+  border-radius: 4px;
+}
+
+[data-theme='forest'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,
+    rgba(57, 255, 20, 0.6) 0%,
+    rgba(173, 255, 47, 0.4) 50%,
+    rgba(144, 238, 144, 0.6) 100%);
+  border-radius: 4px;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+}
+
+[data-theme='forest'] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg,
+    rgba(57, 255, 20, 0.8) 0%,
+    rgba(173, 255, 47, 0.6) 50%,
+    rgba(144, 238, 144, 0.8) 100%);
+  box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+/* Дополнительные улучшения для предотвращения переполнения */
+.App[data-theme='forest'] * {
+  box-sizing: border-box;
+}
+
+/* Фиксация для мобильных устройств */
+@media (max-width: 768px) {
+  .App[data-theme='forest']::before,
+  .App[data-theme='forest']::after {
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px);
+  }
+}

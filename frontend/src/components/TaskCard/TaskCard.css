@@ -1,0 +1,193 @@
+/* TaskCard.css */
+.task-card {
+  background: linear-gradient(135deg, rgba(45, 48, 62, 0.9) 0%, rgba(35, 38, 50, 0.9) 100%);
+  border-radius: 20px;
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease-out;
+  position: relative;
+  animation: slideIn 0.5s ease-out;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+
+.task-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 20px rgba(189, 147, 249, 0.2),
+              0 0 30px rgba(236, 72, 153, 0.15),
+              0 4px 20px rgba(0,0,0,0.2);
+}
+
+.task-card.menu-open {
+  z-index: 100;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 20px rgba(189, 147, 249, 0.2),
+              0 0 30px rgba(236, 72, 153, 0.15),
+              0 4px 20px rgba(0,0,0,0.2);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+.task-title {
+  color: #f0f0f0; /* Softer white */
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+.task-menu {
+  position: relative;
+}
+.menu-button {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 8px; /* Rounded corners */
+  transition: all 0.2s;
+}
+.menu-button:hover {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+.menu-dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: rgba(30, 30, 46, 0.9);
+  border-radius: 12px;
+  padding: 0.5rem;
+  min-width: 180px;
+  z-index: 1000;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.15);
+  animation: fadeInMenu 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-5px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.menu-dropdown button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #f0f0f0;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 8px;
+}
+.menu-dropdown button:hover {
+  background: rgba(189, 147, 249, 0.2);
+  color: white;
+  transform: scale(1.03);
+}
+.menu-dropdown button.delete-btn {
+  color: #ff8080;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.75rem;
+}
+.menu-dropdown button.delete-btn:hover {
+  background: rgba(255, 82, 82, 0.2);
+  color: #ffcccc;
+  transform: scale(1.03);
+}
+.menu-dropdown button span {
+  display: inline-block;
+  transition: transform 0.2s;
+}
+.menu-dropdown button:hover span {
+  transform: scale(1.2);
+}
+.task-description {
+  color: #d0d0d0; /* Lighter grey */
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+.tag {
+  background: rgba(255,255,255,0.15);
+  color: #f0f0f0;
+  padding: 0.35rem 0.9rem;
+  border-radius: 16px; /* Pill shape */
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.assignee {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+}
+
+.assignee span {
+  color: #f0f0f0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 1rem;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #fff;
+}
+.priority-low { background: #2ed573; box-shadow: 0 2px 8px rgba(46, 213, 115, 0.3); }
+.priority-medium { background: #ffa502; box-shadow: 0 2px 8px rgba(255, 165, 2, 0.3); }
+.priority-high { background: #ff4757; box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3); }
+
+.due-date {
+  color: #bdbdbd;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

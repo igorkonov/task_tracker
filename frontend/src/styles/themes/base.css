@@ -1,0 +1,50 @@
+/* ==========================================================================
+   Task Tracker Themes - Enhanced Ocean & Sunset
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. :root & Base Variables
+   - Defines variables for the DEFAULT theme.
+   - Other themes will override these variables.
+   -------------------------------------------------------------------------- */
+   :root {
+    /* Default Theme Colors */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.8);
+    --accent-color: #667eea;
+    --accent-rgb: 102, 126, 234;
+    --error-color: #ff6b6b;
+    --success-color: #4ecdc4;
+
+    /* Global Layout & Animation */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius: 12px;
+  }
+
+
+  /* --------------------------------------------------------------------------
+     2. Core App Styling
+     - Applies the background and base styles to the main .App container.
+     -------------------------------------------------------------------------- */
+  .App {
+    min-height: 100vh;
+    background: var(--primary-gradient);
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.8s ease-in-out;
+  }
+
+  /* Generic reset for pseudo-elements to avoid conflicts */
+  .App::before, .App::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.8s ease-in-out;
+    opacity: 0; /* Hidden by default, activated per theme */
+  }

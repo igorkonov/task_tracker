@@ -1,0 +1,143 @@
+@import './styles/themes.css';
+
+:root {
+  --dark-gradient: linear-gradient(135deg, #4a00e0 0%, #8e2de2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.18);
+  --glass-blur: 16px;
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+  --radius-xl: 24px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+
+  /* Цвета колонок */
+  --col-todo: #7f53ac;
+  --col-inprogress: #3b82f6;
+  --col-done: #22c55e;
+
+  /* Приоритеты */
+  --priority-low: #38bdf8;
+  --priority-medium: #facc15;
+  --priority-high: #ef4444;
+
+  /* Текст */
+  --text-main: #fff;
+  --text-muted: rgba(255,255,255,0.7);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
+  background: var(--primary-gradient);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-xl);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.glass-hover:hover {
+  box-shadow: 0 8px 32px 0 rgba(76,0,255,0.25);
+  transform: translateY(-4px) scale(1.02);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(24px);}
+  to { opacity: 1; transform: none;}
+}
+.animate-fadeIn {
+  animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px);}
+  to { opacity: 1; transform: none;}
+}
+.animate-slideInLeft {
+  animation: slideInLeft 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px);}
+  to { opacity: 1; transform: none;}
+}
+.animate-slideInRight {
+  animation: slideInRight 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
+}
+.animate-scaleIn {
+  animation: scaleIn 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.22);
+}
+
+/* Утилиты */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.25rem; }
+.gap-6 { gap: 1.5rem; }
+.p-2 { padding: 0.5rem; }
+.p-6 { padding: 1.5rem; }
+.text-center { text-align: center; }
+.text-3xl { font-size: 1.875rem; }
+.font-light { font-weight: 300; }
+.font-bold { font-weight: 700; }
+
+/* Цветовые статусы колонок */
+.status-todo { border-left: 6px solid var(--col-todo);}
+.status-in-progress { border-left: 6px solid var(--col-inprogress);}
+.status-done { border-left: 6px solid var(--col-done);}
+
+/* Приоритеты */
+.priority-low { color: var(--priority-low);}
+.priority-medium { color: var(--priority-medium);}
+.priority-high { color: var(--priority-high);}
+
+/* Теги */
+.tag {
+  display: inline-block;
+  padding: 0.2em 0.7em;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 500;
+  margin-right: 0.5em;
+  background: rgba(255,255,255,0.12);
+  color: var(--text-main);
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .text-3xl { font-size: 1.4rem; }
+  .p-6 { padding: 1rem; }
+}
+@media (max-width: 600px) {
+  .flex { flex-direction: column !important; }
+  .gap-6 { gap: 0.75rem; }
+  .p-6 { padding: 0.5rem; }
+}
